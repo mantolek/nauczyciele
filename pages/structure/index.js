@@ -3,26 +3,9 @@ import StructureInfo from '../../sections/structure/StructureInfo';
 import AllStructure from '../../sections/structure/AllStructure';
 import Contact from '../../sections/Contact';
 import { motion } from 'framer-motion';
-import { NewContext } from '../../context/index'
+import { NewContext } from '../../context/index';
 import SEO from '../../component/Seo';
-
-const fade = {
-  initial: {
-    opacity: 0,
-  },
-  enterInitial: {
-    opacity: 1,
-    transition: { duration: 1, delay: 1.5 },
-  },
-  enterNext: {
-    opacity: 1,
-    transition: { duration: .5 },
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: .5 },
-  },
-};
+import { pageAnimation } from '../../utils/animation';
 
 function index() {
   const { firstEnter } = useContext(NewContext);
@@ -32,9 +15,12 @@ function index() {
       initial='initial'
       animate={firstEnter ? 'enterInitial' : 'enterNext'}
       exit='exit'
-      variants={fade}
+      variants={pageAnimation}
     >
-        <SEO title='SDT - Struktura strony' description='Strony dla tlumaczy. Struktura strony.' />
+      <SEO
+        title='SDT - Struktura strony'
+        description='Strony dla tlumaczy. Struktura strony.'
+      />
       <StructureInfo />
       <AllStructure />
       <Contact />

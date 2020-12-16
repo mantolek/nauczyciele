@@ -7,7 +7,6 @@ const OAuth2 = google.auth.OAuth2;
 const path = require('path');
 
 const filePath = path.resolve('./public/ebook.pdf');
-// https://github.com/rivera1294/next-mongodb
 dbConnect();
 
 export default async (req, res) => {
@@ -42,7 +41,6 @@ export default async (req, res) => {
   switch (method) {
     case 'POST':
       try {
-        console.log("NODEMAILER_SERVICE: ", process.env.NODEMAILER_SERVICE)
         let newEmail = await new Email({
           email: email,
         });
@@ -67,18 +65,14 @@ export default async (req, res) => {
         };
 
         transporter.sendMail(message, function (error, response) {
-          console.log("WESZŁO DO SENDMAIL");
           if (error) {
             console.log(error);
             res.status(400).json({ success: false });
           } else {
-            console.log("UDAŁO SIĘ");
             transporter.close();
             res.status(200).json({ success: true });
           }
         });
-
-        // res.status(200).json({ success: true });
       } catch (error) {
         console.log("CATCH:", error);
         res.status(400).json({ success: false });

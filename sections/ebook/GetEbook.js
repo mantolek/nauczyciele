@@ -1,27 +1,17 @@
 import React, { useState } from 'react';
-import fileDownload from 'js-file-download';
+import { validateEmail } from '../../utils/validation';
 
 function GetEbook() {
   const [emailEbook, setEmailEbook] = useState('');
   const [error, setError] = useState('');
-  const [ok, setOk] = useState('');
+  const [sent, setSent] = useState(false);
+  const [processing, setProcessing] = useState(false);
 
   const submitEbook = (e) => {
     e.preventDefault();
 
-    if (emailEbook === '' || emailEbook.length === 0) return;
+    if(!validateEmail(setError, emailEbook, setProcessing)) return
 
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (!re.test(emailEbook)) {
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 2000);
-      return;
-    }
-
-    // action
     fetch(`/api/ebook`, {
       method: 'POST',
       headers: {
@@ -30,30 +20,30 @@ function GetEbook() {
       body: JSON.stringify({ email: emailEbook }),
     })
       .then(() => {
-        // after action
+        setProcessing(false)
         setEmailEbook('');
 
-        setOk(true);
+        setSent(true);
         setTimeout(() => {
-          setOk(false);
+          setSent(false);
         }, 2000);
       })
       .catch((error) => console.error(error))
-      .finally(() =>
-        fileDownload('', './E-book Content Marketing i Social Media.pdf')
-      );
   };
   return (
     <div className='getBook__container'>
       <div className='getBook__wrapper'>
         <div className='getBook__box'>
+          {processing && <div className='form_loader_container'>
+            <div className='form_loader' />
+          </div>}
           <form onSubmit={(e) => submitEbook(e)}>
             {error && (
               <p className='getBook__error' style={{ color: 'red' }}>
                 Proszę podaj poprawny e-mail.
               </p>
             )}
-            {ok && (
+            {sent && (
               <p className='getBook__ok' style={{ color: 'green' }}>
                 E-book pobrany. Dziękujemy.
               </p>

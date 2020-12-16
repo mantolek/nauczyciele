@@ -16,42 +16,11 @@ import {
   MenuStructure,
 } from '../../svg/Svg';
 import { data } from './data';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+import { showTitle } from '../../utils/animation'
 
 function AllStructure() {
   useEffect(() => {
-    ScrollTrigger.batch('.str-main__two .mark__black', {
-      start: 'top +645px',
-      onEnter: (batch) =>
-        gsap.to(batch, {
-          scrollTrigger: {
-            trigger: '.str-main__two .mark__black',
-          },
-          x: '-100%',
-          duration: 1,
-          overwrite: true,
-        }),
-      onLeave: (batch) =>
-        gsap.to(batch, {
-          x: '0%',
-          duration: 1,
-          overwrite: true,
-        }),
-      onEnterBack: (batch) =>
-        gsap.to(batch, {
-          x: '-100%',
-          duration: 1,
-          overwrite: true,
-        }),
-      onLeaveBack: (batch) =>
-        gsap.to(batch, {
-          x: '0%',
-          duration: 1,
-          overwrite: true,
-        }),
-    });
+    showTitle('.str-main__two .mark__black')
   }, []);
 
   return (

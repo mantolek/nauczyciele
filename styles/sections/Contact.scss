@@ -13,6 +13,7 @@
     justify-content: center;
 
     .contact__box {
+      position: relative;
       display: flex;
       flex-direction: column;
       padding: 1rem;
@@ -38,7 +39,7 @@
         .getBook__error, .getBook__ok {
           color: red;
           position: absolute;
-          top: -.6rem;
+          top: 0rem;
           font-size: .8rem;
           left: 50%;
           transform: translateX(-50%);

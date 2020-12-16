@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import {
-  Circle,
-  Domek,
-  Harmonia,
-  Krezka,
-  Circle2,
-  ImageTeacher,
   Checked,
   Vorld,
 } from '../svg/Svg';
@@ -76,9 +70,6 @@ function Welcome() {
         </div>
         <Vorld />
       </div>
-
-      {/* tlo */}
-      {/* <img src='./tlooo.png' className='welcome__tlo' /> */}
 
       <div className='welcome__elementy'>
         <span className="sport-icon flag-pl"></span>

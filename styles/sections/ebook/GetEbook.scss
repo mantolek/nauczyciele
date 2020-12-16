@@ -13,10 +13,9 @@
       background: #fcfcfd;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
-
       padding: 1rem;
-
       margin: 0 1rem;
+      position: relative;
 
       @include media('>=phone') {
         min-width: 22rem;

@@ -2,43 +2,13 @@ import React, { useEffect } from 'react';
 import { Elipze, ArrowDown, EbookImg } from '../../svg/Svg';
 import GetEbook from './GetEbook';
 import Link from 'next/link';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+import { showTitle } from '../../utils/animation'
 
 function EbookInfo() {
   useEffect(() => {
-    ScrollTrigger.batch('.ebook__text h2 span', {
-      start: 'top +645px',
-      onEnter: (batch) =>
-        gsap.to(batch, {
-          scrollTrigger: {
-            trigger: '.ebook__text h2 span',
-          },
-          x: '-100%',
-          duration: 1,
-          overwrite: true,
-        }),
-      onLeave: (batch) =>
-        gsap.to(batch, {
-          x: '0%',
-          duration: 1,
-          overwrite: true,
-        }),
-      onEnterBack: (batch) =>
-        gsap.to(batch, {
-          x: '-100%',
-          duration: 1,
-          overwrite: true,
-        }),
-      onLeaveBack: (batch) =>
-        gsap.to(batch, {
-          x: '0%',
-          duration: 1,
-          overwrite: true,
-        }),
-    });
+    showTitle('.ebook__text h2 span')
   }, []);
+  
   return (
     <div className='ebookInfo__container'>
       <div className='logo'>

@@ -1,0 +1,35 @@
+.form_loader_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000bd;
+    z-index: 13;
+
+    .form_loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        width: 150px;
+        height: 150px;
+        border: 3px solid #f5f1ed;
+        background: #000;
+        border-radius: 100%;
+        border-top: 3px solid #252323;
+        width: 60px;
+        height: 60px;
+        animation: spin 0.8s linear infinite;
+    }
+}
+
+@keyframes spin {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}

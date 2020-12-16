@@ -1,39 +1,17 @@
-import React, { useContext  } from 'react';
+import React, { useContext } from 'react';
 // import Link from 'next/link';
 // import { Link } from '../i18n'
-import SEO from '../component/Seo';
 // import { withTranslation } from '../i18n';
-import gsap from 'gsap';
+import SEO from '../component/Seo';
 import { motion } from 'framer-motion';
-
 import Welcome from '../sections/Welcome';
 import GeneralInfo from '../sections/GeneralInfo';
 import Offer from '../sections/Offer';
 import Price from '../sections/Price';
 import Team from '../sections/Team';
 import Contact from '../sections/Contact';
-
-import { NewContext } from '../context/index'
-
-const timeline = gsap.timeline();
-
-const fade = {
-  initial: {
-    opacity: 0,
-  },
-  enterInitial: {
-    opacity: 1,
-    transition: { duration: 1, delay: 1.5 },
-  },
-  enterNext: {
-    opacity: 1,
-    transition: { duration: .5 },
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: .5 },
-  },
-};
+import { NewContext } from '../context/index';
+import { pageAnimation } from '../utils/animation';
 
 // const Home = ({ t }) => {
 const Home = () => {
@@ -44,10 +22,12 @@ const Home = () => {
       initial='initial'
       animate={firstEnter ? 'enterInitial' : 'enterNext'}
       exit='exit'
-      variants={fade}
-      // onAnimationComplete={() => console.log('tak')}
+      variants={pageAnimation}
     >
-      <SEO title='SDT - home' description='Strony dla tlumaczy. Strona glowna.' />
+      <SEO
+        title='SDT - home'
+        description='Strony dla tlumaczy. Strona glowna.'
+      />
       <Welcome />
       <GeneralInfo />
       <Offer />

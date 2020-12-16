@@ -4,53 +4,14 @@ import {
   Trophy,
   Steps,
   Free,
-  MalyTriangle,
-  Krezka,
-  Circle2,
-  Circle,
   Deal,
 } from '../svg/Svg';
 import Typed from 'react-typed';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+import { showTitle } from '../utils/animation'
 
 function Offer() {
   useEffect(() => {
-    ScrollTrigger.batch('.o-main__two .mark__black', {
-      start: 'top +645px',
-      onEnter: (batch) =>
-        gsap.to(batch, {
-          scrollTrigger: {
-            trigger: '.o-main__two .mark__black',
-          },
-          x: '-100%',
-          duration: 1,
-          overwrite: true,
-          // ease: 'Power2.easeOut',
-        }),
-      onLeave: (batch) =>
-        gsap.to(batch, {
-          x: '0%',
-          duration: 1,
-          overwrite: true,
-          // ease: 'Power2.easeOut',
-        }),
-      onEnterBack: (batch) =>
-        gsap.to(batch, {
-          x: '-100%',
-          duration: 1,
-          overwrite: true,
-          // ease: 'Power2.easeOut',
-        }),
-      onLeaveBack: (batch) =>
-        gsap.to(batch, {
-          x: '0%',
-          duration: 1,
-          overwrite: true,
-          // ease: 'Power2.easeOut',
-        }),
-    });
+    showTitle('.o-main__two .mark__black')
   }, []);
 
   return (
